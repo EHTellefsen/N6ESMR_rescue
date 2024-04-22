@@ -1,1 +1,3 @@
-# N6ESMR_rescue
+# The Nimbus 6 Electrically Scanning Microwave Radiometer: data rescue
+
+The Nimbus 6 Electronic Microwave Radiometer (N6ESMR) was a Single frequency, 37 GHz, dual polarisation radiometer aboard the Nimbus 6 meteorological satellite and was active between June 22, 1975 and August 11, 1977. Its data is one of the few available sources for satellite SI monitoring, and might thus be used to expand the record of SI behavior if processed. However, the original level 1 radiance data were never archived, meaning that the only available data source is printed grayscale data images intended for manual analysis, which was stored on 70 mm film strips as both positives and negative. Scanned TIF images of these were made available in 2022 at the Goddard Earth Science Data Information and Services Center (GES DISC).
