@@ -154,10 +154,6 @@ for file in tqdm(files):
         t0, lambda_e, resErr = pf.find_geometry_parameters(lat_f, lon_f, newNodes)
         lat_out, lon_out = pf.fit_geometry(N, t0, lambda_e)
 
-        # calculating sea ice concentration
-        pcomisoVectorized = np.vectorize(pf.pcomiso)
-        SIC = pcomisoVectorized(TB[1,:,:], TB[0,:,:])
-
 
         #Making NetCDF
         #######################################################################
@@ -171,7 +167,6 @@ for file in tqdm(files):
                 Longitude = (["i", "beam"], lon_out),                
                 CI_upper = (["band", "i", "beam"], TBUpper),
                 CI_lower = (["band", "i", "beam"], TBLower),
-                preliminarySIC = (["i", "beam"], SIC),
             ),
             coords = dict(
                 band = ("band",['TH','TV','TS','TD']),
@@ -197,10 +192,9 @@ for file in tqdm(files):
                 true_times_available = TrueTimesAvalailabe,
                 creator_name = 'Emil Haaber Tellefsen',
                 co_creators = 'Rasmus Tonboe (DTU Space), Wiebke Margitta Kolbe (DTU Space)',
-                project_type = 'BSc project',
                 institution = 'Technical University of Denmark (DTU)',
                 date_created = '2024-11-02',
-                product_version = '1.2',
+                product_version = '1.0',
                 datum = 'spherical (6371km radius)',
                 attribute_description =  ad
             )
@@ -264,15 +258,9 @@ for file in tqdm(files):
             "max_value": maxValues[lut_version],    
             "description": "Lower bound of the 95% Confidence Interval for Brightness Temperature. Be aware of ceiling effects. Be aware, min_value and max_value are different before and after 13 August 1975.",
         }
-
-        ds["preliminarySIC"].attrs = {
-            "long_name": "Sea Ice Concentration",
-            "units": "%",
-            "description": "Calculated Sea Ice Concentration values using preliminary SIC algorithm.",
-        }
         
         # Exporting dataset as NetCDF
-        outFilename = "N6ESMR_" + imType + "_recovered_v1.2_" + "{:04}".format(i) + ".nc"
+        outFilename = "N6ESMR_" + imType + "_recovered_v1.0_" + "{:04}".format(i) + ".nc"
         ds.to_netcdf(path = save_dir + '/' + outFilename ,mode = 'w', format = 'NETCDF4_CLASSIC')
         i+=1
 

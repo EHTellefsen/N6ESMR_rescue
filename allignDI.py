@@ -29,7 +29,7 @@ import projectFunctions as pf
 #User Inputs
 #######################################################################
 
-positive = False  #Choose whether negative of positive TIFs are to be processed 
+positive = True  #Choose whether negative of positive TIFs are to be processed 
 
 
 
